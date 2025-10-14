@@ -1,3 +1,12 @@
+:root {
+  --primary: #0f0f0fff; /* site background / main color (black) */
+  --muted: #1a1a1a; /* slightly lighter black for panels */
+  --accent: #971111; /* red accent */
+  --accent-contrast: #ffffff; /* white accent / text on red/black */
+  --card-bg: #ffffff; /* card / content background */
+  --shadow: rgba(0, 0, 0, 0.12);
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -5,6 +14,8 @@ body {
   display: flex;
   flex-direction: column;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: var(--primary);
+  color: var(--accent-contrast);
 }
 
 /****************   Nav Section **********************/
@@ -12,9 +23,9 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #000000ff;
+  background-color: var(--primary);
   padding: 10px 20px;
-  color: white;
+  color: var(--accent-contrast);
 }
 
 nav a {
@@ -32,7 +43,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #1a1a1a;
+  background-color: var(--muted);
   padding: 10px 20px;
   margin-top: auto;
 }
@@ -54,7 +65,7 @@ footer a:hover {
 
 /*********** Splash Page ************************/
 header {
-  background: linear-gradient(135deg, #1a1a1a 60%, #971111ff 100%);
+  background: linear-gradient(135deg, var(--primary) 70%, var(--accent) 100%);
   text-align: center;
   padding: 60px 20px 40px 20px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -114,11 +125,14 @@ section ul {
 
 section a {
   text-decoration: none;
-  color: #971111ff;
+  color: var(--accent);
+  transition: color 0.18s ease, background-color 0.18s ease, transform 0.12s;
 }
-
 section a:hover {
-  text-decoration: underline;
+  text-decoration: none; /* removed underline per earlier changes */
+  color: var(--accent-contrast);
+  background-color: rgba(151, 17, 17, 0.08);
+  transform: translateY(-2px);
 }
 
 /**************   Projects   *****************/
@@ -138,11 +152,13 @@ section a:hover {
   align-items: center;
   justify-content: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  border: 1px solid #1a1a1a;
+  border: 1px solid var(--muted);
   border-radius: 8px;
   padding: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px var(--shadow);
   margin: 0px 10px 20px 10px;
+  background: var(--card-bg);
+  color: #111;
 }
 
 /**************   Responsiveness   *****************/
@@ -185,4 +201,30 @@ textarea {
 
 .contact-form {
   margin-top: 150px;
+}
+
+/**************   Skills Section   *****************/
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.skill-group h3 {
+  margin: 0 0 8px 0;
+  color: #971111ff;
+  font-size: 1rem;
+}
+
+.skill-group ul {
+  margin: 0;
+  padding-left: 18px;
+  list-style: disc;
+}
+
+@media (max-width: 640px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
 }
