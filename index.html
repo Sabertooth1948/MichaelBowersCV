@@ -12,12 +12,13 @@
       <a href="contact.html">Contact Michael Bowers</a>
     </nav>
     <header>
-      <h1>Michael Bowers</h1>
       <img
+        id="profile-pic"
         src="images/1759948082329.jpg"
         alt="Picture of Michael Bowers"
         style="width: 200px; height: 200px"
       />
+      <h1 class="card" id="Name">Michael Bowers</h1>
     </header>
     <p class="address">
       448 Bartram Trail Club Drive, Evans, Ga 30809 | 706-421-2488 |
@@ -146,5 +147,25 @@
       src="https://kit.fontawesome.com/0e4c88106e.js"
       crossorigin="anonymous"
     ></script>
+    <script>
+      // Update header --h-progress variable from 0..1 as the user scrolls past header
+      (function () {
+        var header = document.querySelector("header");
+        if (!header) return;
+
+        function updateProgress() {
+          var headerRect = header.getBoundingClientRect();
+          var vh = window.innerHeight || document.documentElement.clientHeight;
+          // when header bottom is at the top of the viewport, progress=1
+          var progress = Math.min(Math.max(0, 1 - headerRect.bottom / vh), 1);
+          header.style.setProperty("--h-progress", progress.toFixed(3));
+        }
+
+        // run on load and scroll
+        updateProgress();
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        window.addEventListener("resize", updateProgress);
+      })();
+    </script>
   </body>
 </html>
