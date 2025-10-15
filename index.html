@@ -12,88 +12,94 @@
       <a href="contact.html">Contact Michael Bowers</a>
     </nav>
     <header>
-      <img
-        id="profile-pic"
-        src="images/1759948082329.jpg"
-        alt="Picture of Michael Bowers"
-        style="width: 200px; height: 200px"
-      />
-      <h1 class="card" id="Name">Michael Bowers</h1>
-    </header>
-    <p class="address">
-      448 Bartram Trail Club Drive, Evans, Ga 30809 | 706-421-2488 |
-      MichaelBowers2005@gmail.com
-    </p>
-    <p class="tagline">
-      Hello! My name is Michael Bowers and I'm a junior currently looking for
-      work as a Software Engineer.
-    </p>
-    <hr />
-    <section>
-      <h2>Education</h2>
-      <dl>
-        <dt>University of Georgia</dt>
-        <dd>3.9 GPA</dd>
-        <dt>Bachelor of Science in Computer Science</dt>
-        <dd>May 2027</dd>
-      </dl>
-    </section>
-    <section>
-      <h2>Honors and Awards</h2>
-      <dl>
-        <dt>Presidential Scholar</dt>
-        <dd>Fall 2023, Fall 2024</dd>
-        <dt>Dean's List</dt>
-        <dd>Spring 2024, Spring 2025,</dd>
-        <dt>Scholarships</dt>
-        <dd>Hope Shcolarship, Zell Miller Scholarship, Pell Grant</dd>
-      </dl>
-    </section>
-    <section>
-      <h2>Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-group">
-          <h3>Programming Languages</h3>
-          <ul>
-            <li>Python</li>
-            <li>Java</li>
-            <li>C++</li>
-            <li>C</li>
-            <li>JavaScript</li>
-          </ul>
-        </div>
-
-        <div class="skill-group">
-          <h3>Technologies</h3>
-          <ul>
-            <li>AWS (S3 / EC2 / ELB)</li>
-            <li>Azure AD</li>
-            <li>Docker</li>
-            <li>React.js</li>
-            <li>MongoDB</li>
-            <li>PyTorch</li>
-            <li>Spring</li>
-            <li>IoT</li>
-            <li>OpenCV</li>
-          </ul>
-        </div>
+      <div class="Mug-shot">
+        <img
+          id="profile-pic"
+          src="images/1759948082329.jpg"
+          alt="Picture of Michael Bowers"
+          style="width: 200px; height: 200px"
+        />
+        <h1 class="card" id="Name">Michael Bowers</h1>
       </div>
-    </section>
-    <section>
-      <h2>Leadership and Experience</h2>
-      <dl>
-        <dt>
-          <a target="_blank" href="https://thehackpack.org/"
-            >Developer for The Hack Pack</a
-          >
-        </dt>
-        <dd>May 2025 - Current</dd>
-        <dt>Intern at Security Centaur</dt>
-        <dd>January 2023 - July 2023</dd>
-        <dt>Self Employed landscaping</dt>
-        <dd>May 2019 - August 2022</dd>
-      </dl>
-    </section>
+      <div class="about">
+        <p class="address">
+          448 Bartram Trail Club Drive, Evans, Ga | 30809 706-421-2488
+        </p>
+        <p class="tagline">
+          Hello! My name is Michael Bowers and I'm a junior currently looking
+          for work as a Software Engineer.
+        </p>
+      </div>
+    </header>
+
+    <div class="info">
+      <section class="education">
+        <h2>Education</h2>
+        <dl class="info-card">
+          <dt>University of Georgia</dt>
+          <dd>3.9 GPA</dd>
+          <dt>Bachelor of Science in Computer Science</dt>
+          <dd>May 2027</dd>
+        </dl>
+      </section>
+      <hr />
+      <section>
+        <h2>Honors and Awards</h2>
+        <dl class="info-card">
+          <dt>Presidential Scholar</dt>
+          <dd>Fall 2023, Fall 2024</dd>
+          <dt>Dean's List</dt>
+          <dd>Spring 2024, Spring 2025,</dd>
+          <dt>Scholarships</dt>
+          <dd>Hope Shcolarship, Zell Miller Scholarship, Pell Grant</dd>
+        </dl>
+      </section>
+      <section>
+        <h2>Skills</h2>
+        <div class="info-card skills-grid">
+          <div class="skill-group">
+            <h3>Programming Languages</h3>
+            <ul>
+              <li>Python</li>
+              <li>Java</li>
+              <li>C++</li>
+              <li>C</li>
+              <li>JavaScript</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3>Technologies</h3>
+            <ul>
+              <li>AWS (S3 / EC2 / ELB)</li>
+              <li>Azure AD</li>
+              <li>Docker</li>
+              <li>React.js</li>
+              <li>MongoDB</li>
+              <li>PyTorch</li>
+              <li>Spring</li>
+              <li>IoT</li>
+              <li>OpenCV</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2>Leadership and Experience</h2>
+        <dl class="info-card">
+          <dt>
+            <a target="_blank" href="https://thehackpack.org/"
+              >Developer for The Hack Pack</a
+            >
+          </dt>
+          <dd>May 2025 - Current</dd>
+          <dt>Intern at Security Centaur</dt>
+          <dd>January 2023 - July 2023</dd>
+          <dt>Self Employed landscaping</dt>
+          <dd>May 2019 - August 2022</dd>
+        </dl>
+      </section>
+    </div>
     <section>
       <h2>Projects</h2>
       <div class="three-col">
@@ -155,16 +161,48 @@
 
         function updateProgress() {
           var headerRect = header.getBoundingClientRect();
-          var vh = window.innerHeight || document.documentElement.clientHeight;
-          // when header bottom is at the top of the viewport, progress=1
-          var progress = Math.min(Math.max(0, 1 - headerRect.bottom / vh), 1);
+          var headerHeight = headerRect.height;
+          // Start progress only once the header's top has moved above the viewport top
+          if (headerRect.top >= 0) {
+            header.style.setProperty("--h-progress", "0");
+            return;
+          }
+
+          // amount header has scrolled up (positive number)
+          var scrolled = Math.min(Math.abs(headerRect.top), headerHeight);
+          var progress = scrolled / headerHeight; // 0..1
           header.style.setProperty("--h-progress", progress.toFixed(3));
         }
 
         // run on load and scroll
+
         updateProgress();
         window.addEventListener("scroll", updateProgress, { passive: true });
         window.addEventListener("resize", updateProgress);
+      })();
+
+      (function () {
+        var education = document.querySelector(".education");
+        if (!education) return;
+
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                education.classList.add("visible");
+              } else {
+                education.classList.remove("visible");
+              }
+            });
+          },
+          {
+            root: null,
+            rootMargin: "-10% 0px",
+            threshold: 0.12,
+          }
+        );
+
+        io.observe(education);
       })();
     </script>
   </body>
