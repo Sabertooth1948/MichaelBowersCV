@@ -43,7 +43,7 @@
         </dl>
       </section>
       <hr />
-      <section>
+      <section class="education">
         <h2>Honors and Awards</h2>
         <dl class="info-card">
           <dt>Presidential Scholar</dt>
@@ -54,7 +54,8 @@
           <dd>Hope Shcolarship, Zell Miller Scholarship, Pell Grant</dd>
         </dl>
       </section>
-      <section>
+      <hr />
+      <section class="education">
         <h2>Skills</h2>
         <div class="info-card skills-grid">
           <div class="skill-group">
@@ -84,7 +85,8 @@
           </div>
         </div>
       </section>
-      <section>
+      <hr />
+      <section class="education">
         <h2>Leadership and Experience</h2>
         <dl class="info-card">
           <dt>
@@ -99,6 +101,7 @@
           <dd>May 2019 - August 2022</dd>
         </dl>
       </section>
+      <hr />
     </div>
     <section>
       <h2>Projects</h2>
@@ -106,37 +109,39 @@
         <div class="card">
           <h3>Portfolio Website</h3>
           <img
-            src="images/img_avatar.png"
+            src="images/Screenshot 2025-10-15 200105.jpg"
             alt="Portfolio Website Screenshot"
             style="width: 100px; height: 100px"
           />
           <ul>
-            <li>Built with HTML/CSS</li>
-            <li>Deployed on netify</li>
+            <li>Built with HTML/CSS/JS</li>
+            <li>Deployed on GitHub</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Todo App</h3>
+          <h3>Simplift</h3>
           <img
-            src="images/img_avatar.png"
+            src="images/images.png"
             alt="Todo App Screenshot"
-            style="width: 100px; height: 100px"
+            style="width: 200px; height: 100px"
           />
           <ul>
             <li>Built in React</li>
-            <li>Used LocalStorage</li>
+            <li>Next.js</li>
+            <li>MongoDB</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Resume Builder</h3>
+          <h3>HackPack Website</h3>
           <img
-            src="images/img_avatar.png"
+            src="images/images.png"
             alt="Resume Builder Screenshot"
-            style="width: 100px; height: 100px"
+            style="width: 200px; height: 100px"
           />
           <ul>
-            <li>JSON to HTML conversion</li>
-            <li>Practice with DOM</li>
+            <li>Vue.Js</li>
+            <li>Nuxt.js</li>
+            <li>Oauth</li>
           </ul>
         </div>
       </div>
@@ -182,27 +187,32 @@
       })();
 
       (function () {
-        var education = document.querySelector(".education");
-        if (!education) return;
+        // Observe all sections and toggle .visible when they enter/leave the viewport
+        var sections = Array.prototype.slice.call(
+          document.querySelectorAll("section")
+        );
+        if (!sections.length) return;
 
         var io = new IntersectionObserver(
           function (entries) {
             entries.forEach(function (entry) {
               if (entry.isIntersecting) {
-                education.classList.add("visible");
+                entry.target.classList.add("visible");
               } else {
-                education.classList.remove("visible");
+                entry.target.classList.remove("visible");
               }
             });
           },
           {
             root: null,
             rootMargin: "-10% 0px",
-            threshold: 0.12,
+            threshold: 0.5,
           }
         );
 
-        io.observe(education);
+        sections.forEach(function (s) {
+          io.observe(s);
+        });
       })();
     </script>
   </body>
